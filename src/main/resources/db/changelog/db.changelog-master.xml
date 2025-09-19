@@ -1,0 +1,23 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+ https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd 
+ http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd"
+>
+   
+
+    <changeSet author="sfeher" id="01_" dbms="oracle">
+        <sqlFile encoding="utf8" path="db.changelog01.sql" 
+                 relativeToChangelogFile="true" 
+                 splitStatements="true" 
+                 stripComments="false" 
+                 endDelimiter="\n/" />
+    </changeSet>
+    <changeSet author="sfeher" id="02_" dbms="oracle" runAlways="true">
+        <sqlFile encoding="utf8" path="db/changelog/init.sql" 
+                 relativeToChangelogFile="false" 
+                 splitStatements="true"                  
+                 stripComments="false" 
+                 endDelimiter="\n/" />
+    </changeSet>
+
+</databaseChangeLog>

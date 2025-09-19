@@ -1,0 +1,49 @@
+spring:
+  main-datasource:         # custom prefix
+    jdbc-url: jdbc:oracle:thin:@10.19.93.249:1521:oradev
+    username: hdmnew
+    password: ber
+    driver-class-name: oracle.jdbc.OracleDriver
+    hikari:
+      pool-name: AtkHikariPool
+      maximum-pool-size: 4
+      minimum-idle: 1
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      validation-timeout: 5000
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    open-in-view: 
+        enabled: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+        format_sql: true
+    database: ORACLE
+    database-platform: org.hibernate.dialect.OracleDialect
+
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+
+  config:    
+    import: "optional:file:./config/application-prod.yml"
+
+server:
+  port: 8000
+  error:
+    include-message: always
+    whitelabel:
+      enabled: true
+
+logging:
+  level:
+    org:
+      springframework: INFO
+      hibernate.orm.jdbc.bind: INFO
+    com:
+      zaxxer: INFO

@@ -1,0 +1,46 @@
+<Configuration status="info" >
+
+    <Properties>
+        <Property name="basePath">logs</Property>
+    </Properties>    
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout
+                pattern="%d{yyyy-MM-dd HH:mm:ss} %X{remoteIp} %-5p %c{1.}:%L - %X{loginName} - %m%n" />
+        </Console>
+        <RollingFile name="fileLogger"
+                     fileName="${basePath}/hdmnew.log"
+                     filePattern="${basePath}/hdmnew-%d{yyyy-MM-dd}.log">
+            <PatternLayout>
+                <pattern>[%-5level]  %d{yyyy-MM-dd HH:mm:ss.SSS} %X{remoteIp} [%t] %c{1.}: %L - %X{loginName} - %msg%n
+                </pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <!-- Max 10 files will be created everyday -->
+            <DefaultRolloverStrategy max="10">
+                <Delete basePath="${basePath}" maxDepth="10">
+                    <!-- Delete all files older than 30 days -->
+                    <IfLastModified age="30d" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+
+
+
+
+    </Appenders>
+    <Loggers>       
+        <Root level="INFO">
+            <AppenderRef ref="fileLogger" />
+            <AppenderRef ref="console" />
+<!--            <AppenderRef ref="gelf" />-->
+        </Root>
+        <!--        <Logger  name="org.hibernate.stat" level="DEBUG">
+            <AppenderRef ref="console" />            
+        </Logger>-->
+
+    </Loggers>
+</Configuration>
