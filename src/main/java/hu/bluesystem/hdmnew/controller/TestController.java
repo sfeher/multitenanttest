@@ -44,13 +44,13 @@ public class TestController {
         db1.setName(schema1);
         db1.setDbUrl(url);
         db1.setDbUsername(schema1);
-        db1.setDbPassword("ber");
+        db1.setDbPassword("pwd");
 
         DbConfigProperties db2 = new DbConfigProperties();
         db2.setName(schema2);
         db2.setDbUrl(url);
         db2.setDbUsername(schema2);
-        db2.setDbPassword("ber");
+        db2.setDbPassword("pwd");
 
         // Query 1 for schema1
         branchDatabaseService.switchDatabase(db1);
